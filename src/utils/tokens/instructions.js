@@ -3,14 +3,14 @@ import {
   PublicKey,
   SYSVAR_RENT_PUBKEY,
   TransactionInstruction,
-} from '@solana/web3.js';
+} from '@safecoin/web3.js';
 
 export const TOKEN_PROGRAM_ID = new PublicKey(
-  'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
+  'ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN',
 );
 
-export const WRAPPED_SOL_MINT = new PublicKey(
-  'So11111111111111111111111111111111111111111',
+export const WRAPPED_SAFE_MINT = new PublicKey(
+  'Safe111111111111111111111111111111111111111',
 );
 
 const LAYOUT = BufferLayout.union(BufferLayout.u8('instruction'));
@@ -61,16 +61,21 @@ export function initializeMint({
     { pubkey: mint, isSigner: false, isWritable: true },
     { pubkey: SYSVAR_RENT_PUBKEY, isSigner: false, isWritable: false },
   ];
+  const useFreezeAuth = !!freezeAuthority;
+  const fillerAuth = mint;
+  const freezeAuth = (useFreezeAuth ? freezeAuthority: fillerAuth).toBuffer();
+  const mintInstruction = {
+    initializeMint: {
+      decimals,
+      mintAuthority: mintAuthority.toBuffer(),
+      freezeAuthorityOption: useFreezeAuth,
+      freezeAuthority: freezeAuth,
+    },
+  };
+  const encodedMI = encodeTokenInstructionData(mintInstruction);
   return new TransactionInstruction({
     keys,
-    data: encodeTokenInstructionData({
-      initializeMint: {
-        decimals,
-        mintAuthority: mintAuthority.toBuffer(),
-        freezeAuthorityOption: !!freezeAuthority,
-        freezeAuthority: (freezeAuthority || new PublicKey()).toBuffer(),
-      },
-    }),
+    data: encodedMI,
     programId: TOKEN_PROGRAM_ID,
   });
 }

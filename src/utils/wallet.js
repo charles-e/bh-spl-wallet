@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import * as bip32 from 'bip32';
-import { Account, SystemProgram } from '@solana/web3.js';
+import { Account, SystemProgram } from '@safecoin/web3.js';
 import nacl from 'tweetnacl';
 import {
   setInitialAccountInfo,
@@ -12,7 +12,7 @@ import {
   getOwnedTokenAccounts,
   transferTokens,
 } from './tokens';
-import { TOKEN_PROGRAM_ID, WRAPPED_SOL_MINT } from './tokens/instructions';
+import { TOKEN_PROGRAM_ID, WRAPPED_SAFE_MINT } from './tokens/instructions';
 import {
   ACCOUNT_LAYOUT,
   parseMintData,
@@ -146,14 +146,14 @@ export function useBalanceInfo(publicKey) {
     return null;
   }
 
-  if (mint && mint.equals(WRAPPED_SOL_MINT)) {
+  if (mint && mint.equals(WRAPPED_SAFE_MINT)) {
     return {
       amount,
       decimals: 9,
       mint,
       owner,
-      tokenName: 'Wrapped SOL',
-      tokenSymbol: 'SOL',
+      tokenName: 'Wrapped SAFE',
+      tokenSymbol: 'SAFE',
       valid: true,
     };
   }
@@ -189,8 +189,8 @@ export function useBalanceInfo(publicKey) {
       decimals: 9,
       mint: null,
       owner: publicKey,
-      tokenName: 'SOL',
-      tokenSymbol: 'SOL',
+      tokenName: 'SAFE',
+      tokenSymbol: 'SAFE',
       valid: true,
     };
   }

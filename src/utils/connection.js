@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import { clusterApiUrl, Connection } from '@solana/web3.js';
+import { clusterApiUrl, Connection } from '@safecoin/web3.js';
 import { useLocalStorageState } from './utils';
 import { refreshCache, setCache, useAsyncData } from './fetch-loop';
 import tuple from 'immutable-tuple';

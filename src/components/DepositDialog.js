@@ -26,13 +26,13 @@ export default function DepositDialog({
       <DialogContent>
         {publicKey.equals(owner) ? (
           <Typography>
-            This address can only be used to receive SOL. Do not send other
+            This address can only be used to receive SAFE. Do not send other
             tokens to this address.
           </Typography>
         ) : (
           <Typography>
             This address can only be used to receive {tokenSymbol}. Do not send
-            SOL to this address.
+            SAFE to this address.
           </Typography>
         )}
         <CopyableDisplay

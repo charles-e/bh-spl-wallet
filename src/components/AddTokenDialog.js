@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import { refreshWalletPublicKeys, useWallet } from '../utils/wallet';
-import { LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
+import { LAMPORTS_PER_SAFE, PublicKey } from '@safecoin/web3.js';
 import { useUpdateTokenName } from '../utils/tokens/names';
 import { useAsyncData } from '../utils/fetch-loop';
 import LoadingIndicator from './LoadingIndicator';
@@ -82,7 +82,7 @@ export default function AddTokenDialog({ open, onClose }) {
         {tokenAccountCost ? (
           <DialogContentText>
             Add a token to your wallet. This will cost{' '}
-            {feeFormat.format(tokenAccountCost / LAMPORTS_PER_SOL)} Solana.
+            {feeFormat.format(tokenAccountCost / LAMPORTS_PER_SAFE)} Solana.
           </DialogContentText>
         ) : (
           <LoadingIndicator />

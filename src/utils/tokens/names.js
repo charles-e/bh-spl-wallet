@@ -2,20 +2,30 @@ import EventEmitter from 'events';
 import { useConnectionConfig } from '../connection';
 import { useListener } from '../utils';
 import { useCallback } from 'react';
-import { clusterApiUrl } from '@solana/web3.js';
+import { clusterApiUrl } from '@safecoin/web3.js';
 
 export const TOKENS = {
-  [clusterApiUrl('mainnet-beta')]: [
+  [clusterApiUrl('devnet')]: [
     {
-      mintAddress: '7JMYnisD7vu9c5LQDxaEfmiGrvAa11nT8M6QW3YZ3xN4',
+      mintAddress: 'SRmaJesFc3feD9WxoHg85oLA443b5g8G6qPnQgUvbhC',
       tokenName: 'Serum',
       tokenSymbol: 'SRM',
     },
     {
-      mintAddress: 'MSRMmR98uWsTBgusjwyNkE8nDtV79sJznTedhJLzS4B',
+      mintAddress: 'msmUmQ7BEftBi5DLUL5Vwk46HcMGjVNdNuAJcX8vELy',
       tokenName: 'MegaSerum',
       tokenSymbol: 'MSRM',
     },
+    {
+      mintAddress: 'AaACXpmVyNpowJcMG6GK3x6R6oPsGv31V48izvLN44mc',
+      tokenName: 'AA-Token',
+      tokenSymbol: 'AA',    
+    },
+    {
+      mintAddress: 'Bbw9wHcUJE1xeCheooReZREqGuphWnCdv9ueNQLZDVm2',
+      tokenName: 'BB-Token',
+      tokenSymbol: 'BB'
+    }
   ],
 };
 

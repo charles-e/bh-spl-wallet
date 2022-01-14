@@ -5,7 +5,7 @@ import {
 } from '../utils/wallet';
 import { useUpdateTokenName } from '../utils/tokens/names';
 import { useCallAsync, useSendTransaction } from '../utils/notifications';
-import { Account, clusterApiUrl, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { Keypair, clusterApiUrl, LAMPORTS_PER_SAFE } from '@safecoin/web3.js';
 import { abbreviateAddress, sleep } from '../utils/utils';
 import { refreshAccountInfo, useConnectionConfig } from '../utils/connection';
 import { createAndInitializeMint } from '../utils/tokens';
@@ -26,7 +26,7 @@ export default function DebugButtons() {
     callAsync(
       wallet.connection.requestAirdrop(
         wallet.account.publicKey,
-        LAMPORTS_PER_SOL,
+        LAMPORTS_PER_SAFE,
       ),
       {
         onSuccess: async () => {
@@ -34,13 +34,13 @@ export default function DebugButtons() {
           refreshAccountInfo(wallet.connection, wallet.account.publicKey);
         },
         successMessage:
-          'Success! Please wait up to 30 seconds for the SOL tokens to appear in your wallet.',
+          'Success! Please wait up to 30 seconds for the SAFE tokens to appear in your wallet.',
       },
     );
   }
 
   function mintTestToken() {
-    let mint = new Account();
+    let mint = new Keypair();
     updateTokenName(
       mint.publicKey,
       `Test Token ${abbreviateAddress(mint.publicKey)}`,
@@ -53,7 +53,7 @@ export default function DebugButtons() {
         mint,
         amount: 1000,
         decimals: 2,
-        initialAccount: new Account(),
+        initialAccount: new Keypair(),
       }),
       { onSuccess: () => refreshWalletPublicKeys(wallet) },
     );
@@ -66,8 +66,8 @@ export default function DebugButtons() {
       <Tooltip
         title={
           requestAirdropDisabled
-            ? 'Receive some devnet SOL for free. Only enabled on the devnet'
-            : 'Receive some devnet SOL for free'
+            ? 'Receive some devnet SAFE for free. Only enabled on the devnet'
+            : 'Receive some devnet SAFE for free'
         }
       >
         <span>
@@ -84,7 +84,7 @@ export default function DebugButtons() {
       <Tooltip
         title={
           noSol
-            ? 'Generate and receive balances in a new test token. Requires SOL balance'
+            ? 'Generate and receive balances in a new test token. Requires SAFE balance'
             : 'Generate and receive balances in a new test token'
         }
       >
