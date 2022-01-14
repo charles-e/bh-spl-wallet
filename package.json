@@ -5,13 +5,11 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "@project-serum/serum": "file:../serum-ts/packages/serum",
     "@safecoin/web3.js": "^1.29.3",
     "@solana/buffer-layout": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "base64js": "^1.0.1",
     "bip32": "^2.0.5",
     "bip39": "^3.0.2",
     "bn.js": "^5.1.2",
